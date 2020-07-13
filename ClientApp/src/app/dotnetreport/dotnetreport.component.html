@@ -28,13 +28,12 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <!-- ko if: CanSaveReports() || adminMode() -->
+          <ul class="navbar-nav mr-auto" data-bind="if: CanSaveReports() || adminMode()">            
             <li class="nav-item active">
               <a href="#" class="nav-link" data-bind="click: createNewReport" data-toggle="modal" data-target="#modal-reportbuilder">Create a New Report</a>
             </li>
-            <!-- /ko -->
-            <!-- ko if: CanManageFolders() || adminMode() -->
+          </ul>
+          <ul data-bind="if: CanManageFolders() || adminMode()">            
             <li class="nav-item">
               <a href="#" class="nav-link" data-bind="click: ManageFolder.newFolder">Add a new Folder</a>
             </li>
@@ -47,7 +46,6 @@
                 <a class="dropdown-item" href="#" data-bind="click: ManageFolder.deleteFolder">Delete Selected Folder</a>
               </div>
             </li>
-            <!-- /ko -->
           </ul>
         </div>
       </nav>
@@ -78,7 +76,7 @@
           <div data-bind="if: SelectedFolder()!=null && reportsInFolder().length==0">
             No Reports Saved in this Folder
           </div>
-          <!-- ko foreach: reportsInFolder -->
+          <div data-bind="foreach: reportsInFolder">
           <div class="list-group-item">
             <div class="row">
               <div class="col-sm-7">
@@ -88,34 +86,34 @@
                 </div>
                 <div class="clearfix"></div>
                 <p data-bind="text: reportDescription"></p>
-                <!-- ko if: $parent.adminMode -->
+                <div data-bind="if: $parent.adminMode">
                 <div class="small">
                   <b>Report Access</b><br />
                   Manage by User <span class="label label-info" data-bind="text: userId ? userId : 'No User'"></span><br />
                   View only by User <span class="label label-info" data-bind="text: (viewOnlyUserId ? viewOnlyUserId : (userId ? userId : 'Any User'))"></span><br />
-                  <!-- ko if: userRole -->
+                  <div data-bind="if: userRole">
                   Manage by Role <span class="label label-info" data-bind="text: userRole ? userRole : 'No Role'"></span><br />
-                  <!-- /ko -->
-                  <!-- ko if: viewOnlyUserRole -->
+                  </div>
+                  <div data-bind="if: viewOnlyUserRole">
                   View only by Role <span class="label label-info" data-bind="text: viewOnlyUserRole ? viewOnlyUserRole : 'Any Role'"></span><br />
-                  <!-- /ko -->
-                  <!-- ko if: clientId -->
+                  </div>
+                  <div data-bind="if: clientId">
                   For Client <span class="label label-info" data-bind="text: clientId ? clientId : 'Any'"></span><br />
-                  <!-- /ko -->
+                  </div>
                 </div>
-                <!-- /ko -->
+                </div>
               </div>
               <div class="col-sm-5 right-align">
                 <div class="d-none d-md-block">
                   <br />
-                  <!-- ko if: $root.CanSaveReports() || $root.adminMode()-->
+                  <div data-bind="if: $root.CanSaveReports() || $root.adminMode()">
                   <button class="btn btn-sm btn-secondary" data-bind="click: openReport, visible: canEdit" data-toggle="modal" data-target="#modal-reportbuilder">
                     <span class="fa fa-edit" aria-hidden="true"></span> Edit
                   </button>
                   <button class="btn btn-sm btn-secondary" data-bind="click: copyReport" data-toggle="modal" data-target="#modal-reportbuilder">
                     <span class="fa fa-copy" aria-hidden="true"></span> Copy
                   </button>
-                  <!-- /ko -->
+                  </div>
                   <button class="btn btn-sm btn-primary" data-bind="click: runReport">
                     <span class="fa fa-gears" aria-hidden="true"></span> Run
                   </button>
@@ -126,14 +124,14 @@
                 </div>
 
                 <div class="d-block d-md-none">
-                  <!-- ko if: $root.CanSaveReports() || $root.adminMode()-->
+                  <div data-bind="if: $root.CanSaveReports() || $root.adminMode()">
                   <button class="btn btn-sm btn-secondary" title="Edit Report" data-bind="click: openReport, visible: canEdit" data-toggle="modal" data-target="#modal-reportbuilder">
                     <span class="fa fa-edit" aria-hidden="true"></span>
                   </button>
                   <button class="btn btn-sm btn-secondary" data-bind="click: copyReport" title="Copy Report" data-toggle="modal" data-target="#modal-reportbuilder">
                     <span class="fa fa-copy" aria-hidden="true"></span>
                   </button>
-                  <!-- /ko -->
+                  </div>
                   <button class="btn btn-sm btn-primary" data-bind="click: runReport" title="Run Report">
                     <span class="fa fa-gears" aria-hidden="true"></span>
                   </button>
@@ -144,7 +142,7 @@
               </div>
             </div>
           </div>
-          <!-- /ko -->
+          </div>
         </div>
       </div>
     </div>
@@ -225,7 +223,7 @@
             </div>
           </div>
           <div class="row container-fluid">
-            <!-- ko foreach: ChooseFields -->
+            <div data-bind="foreach: ChooseFields">
             <div class="col-md-3 col-sm-4 col-xs-6">
               <div class="list-group-item">
                 <div class="checkbox">
@@ -235,7 +233,7 @@
                 </div>
               </div>
             </div>
-            <!-- /ko -->
+            </div>
           </div>
           <div data-bind="if: isFormulaField">
             <br />
@@ -260,45 +258,45 @@
                 <label class="col-sm-2 control-label">Data Format</label>
                 <div class="col-sm-10">
                   <select class="form-control form-control-sm" data-bind="value: formulaDataFormat" required>
-                    <!-- ko ifnot: formulaOnlyHasDateFields -->
+                    <div data-bind="ifnot: formulaOnlyHasDateFields">
                     <option>String</option>
                     <option>Integer</option>
                     <option>Double</option>
-                    <!-- /ko -->
-                    <!-- ko if: formulaOnlyHasDateFields -->
+                    </div>
+                    <div data-bind="if: formulaOnlyHasDateFields">
                     <option>Days</option>
                     <option>Hours</option>
                     <option>Minutes</option>
                     <option>Seconds</option>
-                    <!-- /ko -->
+                    </div>
                   </select>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Field Formula</label>
                 <div class="col-sm-10">
-                  <!-- ko foreach: formulaFields -->
+                  <div data-bind="foreach: formulaFields">
                   <h3 class="pull-left" data-bind="visible: setupFormula.isParenthesesStart" style="margin-top: 0;">(</h3>
-                  <!-- ko if: !setupFormula.isParenthesesStart() && !setupFormula.isParenthesesEnd() -->
+                  <div data-bind="if: !setupFormula.isParenthesesStart() && !setupFormula.isParenthesesEnd()">
                   <div class="list-group-item pull-left" style="margin-left: 15px; padding: 5px 15px">
                     <span data-bind="text: fieldName, visible: !setupFormula.isConstantValue()"></span>
-                    <!-- ko if: setupFormula.isConstantValue -->
+                    <div data-bind="if: setupFormula.isConstantValue">
                     <input data-bind="value: setupFormula.constantValue" class="form-control form-control-sm" required />
-                    <!-- /ko -->
+                    </div>
                   </div>
-                  <!-- /ko -->
+                  </div>
                   <h3 class="pull-left" data-bind="visible: setupFormula.isParenthesesEnd" style="margin-top: 0;">)</h3>
                   <div class="pull-left" style="margin-left: 15px;" data-bind="visible: $parent.showFormulaOperation($index())">
                     <select class="form-control form-control-sm" style="max-width: 50px;" data-bind="value: setupFormula.formulaOperation">
                       <option>-</option>
-                      <!-- ko if: ['Int','Money','Float'].indexOf(fieldType) != -1 -->
+                      <div data-bind="if: ['Int','Money','Float'].indexOf(fieldType) != -1">
                       <option>+</option>
                       <option>*</option>
                       <option>/</option>
-                      <!-- /ko -->
+                      </div>
                     </select>
                   </div>
-                  <!-- /ko -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,7 +305,7 @@
 
           </div>
         </div>
-        <!-- ko if: SelectedFields().length>0 -->
+        <div data-bind="if: SelectedFields().length>0">
         <hr />
         <h5><span class="fa fa-table"></span> Selected data for the Report</h5>
         <div>
@@ -367,7 +365,7 @@
           <div data-bind="template: {name: 'filter-group'}" class="col"></div>
           <br />
         </div>
-        <!-- /ko -->
+        </div>
         <hr />
         <h5><span class="fa fa-hourglass"></span> Choose Schedule</h5>
 
@@ -425,10 +423,10 @@
             </div>
           </div>
 
-          <!-- ko if: adminMode -->
+          <div data-bind="if: adminMode">
           <hr />
           <div data-bind="template: {name: 'manage-access-template'}"></div>
-          <!-- /ko -->
+          </div>
         </div>
       </div>
       <div class="modal-footer">

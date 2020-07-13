@@ -30,13 +30,14 @@
               "../wwwroot/css/dotnetreport.css"
             ],
             "scripts": [
+              "../wwwroot/lib/jquery/jquery.min.js",
+              "../wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js",
               "../wwwroot/lib/knockout/knockout-latest.js",
-              "../wwwroot/lib/jquery/jquery.js",
               "../wwwroot/lib/jquery-blockui/jquery.blockUI.js",
-              "../wwwroot/lib/jquery/jquery.js",
               "../wwwroot/lib/bootbox/bootbox.min.js",
               "../wwwroot/lib/toastr/toastr.min.js",
               "../wwwroot/lib/bootstrap-datepicker/js/bootstrap-datepicker.js",
+              "../wwwroot/lib/jquery-ui-dist/jquery-ui.min.js",
               "../wwwroot/lib/knockout-sortable/knockout-sortable.min.js",
               "../wwwroot/lib/select2/js/select2.min.js",
               "../wwwroot/lib/lodash/lodash.min.js",

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 declare var ko: any;
 declare var ajaxcall: any;
 declare var reportViewModel: any;
+declare var $: any;
 
 @Component({
   selector: 'app-dotnetreport',
