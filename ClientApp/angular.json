@@ -23,9 +23,27 @@
             "assets": ["src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "../wwwroot/lib/bootstrap-datepicker/css/bootstrap-datepicker.min.css",
+              "../wwwroot/lib/font-awesome/css/font-awesome.min.css",
+              "../wwwroot/lib/select2/css/select2.min.css",
+              "../wwwroot/css/dotnetreport.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../wwwroot/lib/knockout/knockout-latest.js",
+              "../wwwroot/lib/jquery/jquery.js",
+              "../wwwroot/lib/jquery-blockui/jquery.blockUI.js",
+              "../wwwroot/lib/jquery/jquery.js",
+              "../wwwroot/lib/bootbox/bootbox.min.js",
+              "../wwwroot/lib/toastr/toastr.min.js",
+              "../wwwroot/lib/bootstrap-datepicker/js/bootstrap-datepicker.js",
+              "../wwwroot/lib/knockout-sortable/knockout-sortable.min.js",
+              "../wwwroot/lib/select2/js/select2.min.js",
+              "../wwwroot/lib/lodash/lodash.min.js",
+              "../wwwroot/js/dotnetreport.js",
+              "../wwwroot/js/dotnetreport-helper.js",
+              "../wwwroot/js/dotnetreport-setup.js"
+            ]
           },
           "configurations": {
             "production": {

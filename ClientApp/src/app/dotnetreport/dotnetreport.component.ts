@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 declare var ko: any;
+declare var ajaxcall: any;
+declare var reportViewModel: any;
 
 @Component({
   selector: 'app-dotnetreport',
@@ -17,7 +19,7 @@ export class DotNetReportComponent implements OnInit{
 			ajaxcall({ url: '/api/ReportApi/GetUsersAndRoles' }).done(function (data) {
 				var vm = new reportViewModel({
 					runReportUrl: '/Report/Report',
-					//reportWizard: $("#modal-reportbuilder"),
+					reportWizard: $("#modal-reportbuilder"),
 					lookupListUrl: '/api/ReportApi/GetLookupList',
 					apiUrl: '/api/ReportApi/CallReportApi',
 					runReportApiUrl: '/api/ReportApi/RunReportApi',
